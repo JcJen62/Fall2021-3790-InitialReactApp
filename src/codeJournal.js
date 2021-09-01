@@ -14,10 +14,11 @@ function getScores() {
   return [70, 80, 'Some name', [{id: 1, foo: 'bar'}, {id: 2, foo: 'baz'}]];
 }
 
-let [x, y ,...args] = getScores();
+// rest operator example
+let [x, y, ...args] = getScores();
 console.log(x); // 70
 console.log(y); // 80
-console.log(args); // [90, 100]
+console.log(args);
 
 const user = {
   id: 42,
@@ -47,3 +48,7 @@ console.log(a); // 70
 console.log(b); // 80
 console.log(c); // undefined
 
+// spread operator
+const odd = getScores2()
+const combined = [2,4,6, ...odd];
+console.log(combined);

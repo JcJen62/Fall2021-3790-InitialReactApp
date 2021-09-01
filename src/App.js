@@ -1,9 +1,11 @@
 import './App.css';
+import './components/SenatorCard'
+import SenatorCard from './components/SenatorCard';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      
+      <SenatorCard/>
     </div>
   );
 }
