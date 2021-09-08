@@ -1,19 +1,28 @@
-import {senators} from '../data/senate'
-import { Card } from '@material-ui/core'
-import { blue } from '@material-ui/core/colors'
+import PropTypes from 'prop-types';
+import { Card, CardContent } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
-const SenatorCard = () => {
-  return senators.map((senator) => {
-    return (<Card key={senator.id} >
-      <h1 sx={{
-      mt: '10px',
-      width: 200,
-      color: '#0000FF'
-    }}
-    >
-      {senator.first_name + ' ' + senator.last_name}</h1>
-        </Card>)
-  })
+const SenatorCard = (props) => {
+    const {
+      firstName,
+      lastName,
+      id
+    } = props
+    return (
+      <Card key={id} sx={{color: '#ff00ff'}}>
+        <CardContent >
+          <Typography variant="h5" component="div">
+            {firstName} {lastName}
+          </Typography>
+        </CardContent>
+      </Card>
+    )
 }
+
+SenatorCard.propTypes = {
+firstName: PropTypes.string,
+lastName: PropTypes.string,
+id: PropTypes.string
+};
 
 export default SenatorCard
