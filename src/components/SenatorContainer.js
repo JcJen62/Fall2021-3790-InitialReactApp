@@ -1,9 +1,13 @@
 import { senators } from '../data/senate'
 import SenatorCard from './SenatorCard'
+import { Box } from '@material-ui/core'
 
 const SenatorContainer = () => {
   return (
-    <div>
+    <Box sx={{
+      display: 'flex',
+      flexWrap: 'wrap'
+    }}>
       {senators.map((senator) => {
         return (
           <SenatorCard
@@ -13,7 +17,7 @@ const SenatorContainer = () => {
           />
         )
       })}
-    </div>
+    </Box>
   )
 }
 
