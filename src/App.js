@@ -1,13 +1,19 @@
-import './App.css';
-import './components/SenatorCard'
-import SenatorCard from './components/SenatorCard';
+import './App.css'
+import SenatorContainer from './components/SenatorContainer'
+import { ThemeProvider } from '@material-ui/core'
+import GlobalStyles from './components/GlobalStyles'
+import theme from './theme'
 
 const App = () => {
   return (
-    <div className="App">
-      <SenatorCard/>
-    </div>
-  );
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <div className="App">
+        <SenatorContainer />
+        {/* <SenatorCard/> */}
+      </div>
+    </ThemeProvider>
+  )
 }
 
-export default App;
+export default App

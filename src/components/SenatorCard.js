@@ -1,19 +1,14 @@
-import {senators} from '../data/senate'
 import { Card } from '@material-ui/core'
-import { blue } from '@material-ui/core/colors'
+import './SenatorCard.css'
 
-const SenatorCard = () => {
-  return senators.map((senator) => {
-    return (<Card key={senator.id} >
-      <h1 sx={{
-      mt: '10px',
-      width: 200,
-      color: '#0000FF'
-    }}
-    >
-      {senator.first_name + ' ' + senator.last_name}</h1>
-        </Card>)
-  })
+const SenatorCard = (props) => {
+  const { firstName, lastName, id } = props
+
+  return (
+    <Card key={id} className='card'>
+      {firstName} {lastName}
+    </Card>
+  )
 }
 
 export default SenatorCard
