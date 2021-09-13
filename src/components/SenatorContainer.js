@@ -1,6 +1,6 @@
 import { senators } from '../data/senate'
 import SenatorCard from './SenatorCard'
-import { Box } from '@material-ui/core'
+import Box from '@mui/material/Box'
 
 const SenatorContainer = () => {
   return (
@@ -10,10 +10,7 @@ const SenatorContainer = () => {
     }}>
       {senators.map((senator) => {
         return (
-          <SenatorCard
-            firstName={senator.first_name}
-            lastName={senator.last_name}
-            id={senator.google_entity_id}
+          <SenatorCard {...senator}
           />
         )
       })}
