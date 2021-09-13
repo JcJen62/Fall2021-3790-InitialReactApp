@@ -1,11 +1,11 @@
 import Card from '@mui/material/Card'
 import './SenatorCard.css'
 
-const SenatorCard = (props) => {
-  const { firstName, lastName, id } = props
-
+const SenatorCard = (senator) => {
+  /* const { firstName, lastName, id } = props */
+/* console.log(senator) */
   return (
-    <Card key={id} className='card' sx={{
+    <Card key={senator.id} className='card' sx={{
       width: 160,
       height: 30,
       bgcolor: 'primary.light',
@@ -14,7 +14,7 @@ const SenatorCard = (props) => {
         opacity: [0.9, 0.8, 0.7],
       },
     }}>
-      {firstName} {lastName}
+      {senator.first_name} {senator.last_name}
     </Card>
   )
 }

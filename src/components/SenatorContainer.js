@@ -10,11 +10,7 @@ const SenatorContainer = () => {
     }}>
       {senators.map((senator) => {
         return (
-          <SenatorCard
-            firstName={senator.first_name}
-            lastName={senator.last_name}
-            id={senator.google_entity_id}
-          />
+          <SenatorCard {...senator} />
         )
       })}
     </Box>
