@@ -29,7 +29,7 @@ const SenatorContainer = () => {
     }}>
       {senators.map((senator) => {
         return (
-          <SenatorCard key={senator.id} modalFunctions={[handleOpen, handleClose]} senator={{ ...senator }}
+          <SenatorCard key={senator.id} modalFunction={handleOpen} senator={{ ...senator }}
           />
         )
       })}

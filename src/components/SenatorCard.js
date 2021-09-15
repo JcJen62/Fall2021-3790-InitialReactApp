@@ -9,12 +9,10 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 const colorVar = '#ff0000'
 
 const SenatorCard = (props) => {
-  
-  const [openModal, closeModal] = props.modalFunctions
 
   const handleInfoClick = () => {
     console.log('Clicked!!')
-    openModal()
+    props.modalFunction()
   }
 
   return (
