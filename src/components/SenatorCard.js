@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import CardActions from '@mui/material/CardActions'
 import Button from '@mui/material/Button'
-import './SenatorCard.css'
 
 const bull = (
   <Box
