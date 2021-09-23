@@ -21,6 +21,7 @@ const SenatorContainer = () => {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+  //const addToFavorites = () => special update state function goes here
 
   return (
     <Box sx={{
