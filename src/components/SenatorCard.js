@@ -19,7 +19,7 @@ const SenatorCard = (props) => {
   const handleFavoriteClick = () => {
     //console.log(props.senator.id)
     setFavorite(!favorite)
-    props.addToFavoritesFunction(props.senator.id)
+    props.addToFavoritesFunction(props.senator)
   }
 
   return (

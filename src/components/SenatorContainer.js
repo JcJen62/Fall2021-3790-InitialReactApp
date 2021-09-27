@@ -17,19 +17,21 @@ const style = {
   p: 4,
 }
 
-const initialIDs = ['23432', '23432']
-
 const SenatorContainer = () => {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-  const [favorites, setFavorites] = React.useState(initialIDs)
+  const [favorites, setFavorites] = React.useState([])
 
-  const addToFavorites = (senatorID) => {
-    console.log(`${senatorID} added to favorites`)
-    setFavorites((prevState) => {
-      return [...prevState, senatorID]
-    }) // need to sort out the toggling to add and remove senator ids
+  const addToFavorites = (senator) => {
+    console.log(`${senator} was clicked to add to favorites`)
+    if (!favorites.includes(senator.id)) { // not currently a favorite, so add it
+      setFavorites((prevState) => [...prevState, senator.id])
+    } else {
+      setFavorites(() => { // duplicate so filter and return new array
+        return favorites.filter((item) => item !== senator.id)
+      }) 
+    }
   }
 
   return (
@@ -39,9 +41,10 @@ const SenatorContainer = () => {
         flexWrap: 'wrap',
       }}
     >
-      {favorites.map((senatorID) => {
-        return <p>{senatorID}</p>
-      })}
+      {favorites &&
+        favorites.map((senatorId) => {
+          return <p key={senatorId}>{senatorId}</p>
+        })}
       {senators.map((senator) => {
         return (
           <SenatorCard
