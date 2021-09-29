@@ -4,6 +4,7 @@ import SenatorCard from './SenatorCard'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import { Typography } from '@mui/material'
+import axios from 'axios'
 
 const style = {
   position: 'absolute',
@@ -22,15 +23,32 @@ const SenatorContainer = () => {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [favorites, setFavorites] = React.useState([])
+  const [senatorList, setSenatorList] = React.useState([])
+
+  React.useEffect(() => {
+    const fetchSenatorList = async () => {
+      console.log('I want to call my api now')
+      try {
+        const response = await axios.get('/senate')
+        console.log(response.data.results[0].members)
+        setSenatorList(response.data.results[0].members)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchSenatorList()
+  }, [])
 
   const addToFavorites = (senator) => {
     console.log(`${senator} was clicked to add to favorites`)
-    if (!favorites.includes(senator.id)) { // not currently a favorite, so add it
+    if (!favorites.includes(senator.id)) {
+      // not currently a favorite, so add it
       setFavorites((prevState) => [...prevState, senator.id])
     } else {
-      setFavorites(() => { // duplicate so filter and return new array
+      setFavorites(() => {
+        // duplicate so filter and return new array
         return favorites.filter((item) => item !== senator.id)
-      }) 
+      })
     }
   }
 
@@ -41,11 +59,7 @@ const SenatorContainer = () => {
         flexWrap: 'wrap',
       }}
     >
-      {favorites &&
-        favorites.map((senatorId) => {
-          return <p key={senatorId}>{senatorId}</p>
-        })}
-      {senators.map((senator) => {
+      {senatorList.map((senator) => {
         return (
           <SenatorCard
             key={senator.id}
