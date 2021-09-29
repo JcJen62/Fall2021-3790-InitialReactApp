@@ -4,6 +4,7 @@ import SenatorCard from './SenatorCard'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import { Typography } from '@mui/material'
+import axios from 'axios'
 
 const style = {
   position: 'absolute',
@@ -17,11 +18,12 @@ const style = {
   p: 4,
 }
 
-const SenatorContainer = () => {
+const SenatorContainer = (props) => {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [favorites, setFavorites] = React.useState([])
+  const [senatorList, setSenatorList] = React.useState([])
 
   const addToFavorites = (senator) => {
     console.log(`${senator} was clicked to add to favorites`)
@@ -34,6 +36,19 @@ const SenatorContainer = () => {
     }
   }
 
+  React.useEffect(() => {
+    const fetchSenatorList = async () => {
+      try {
+        const response = await axios.get('/senate')
+        console.log(response.data)
+        setSenatorList(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchSenatorList()
+  }, [props.url, senatorList])
+
   return (
     <Box
       sx={{
@@ -45,7 +60,7 @@ const SenatorContainer = () => {
         favorites.map((senatorId) => {
           return <p key={senatorId}>{senatorId}</p>
         })}
-      {senators.map((senator) => {
+      {senatorList.map((senator) => {
         return (
           <SenatorCard
             key={senator.id}
