@@ -30,11 +30,10 @@ const SenatorCard = (props) => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        width: 168,
-        height: 120,
         m: 1,
-        border: 5,
-        borderColor: partyColor
+        border: 2,
+        borderColor: partyColor,
+        maxWidth: 100
 /*         '&:hover': {
           opacity: [0.9, 0.8, 0.7],
         }, */
@@ -42,16 +41,13 @@ const SenatorCard = (props) => {
     >
       <CardMedia
           component='img'
-            alt='Senator'
-            height='200'
-          image={`https://www.govtrack.us/static/legislator-photos/${props.senator.govtrack_id}-200px.jpeg`}
-          title={props.senator.first_name}
+        alt='Senator'
+          image={`https://www.govtrack.us/static/legislator-photos/${props.senator.govtrack_id}-100px.jpeg`}
         />
-      <CardContent>
+      <CardContent sx={{ p: 0 }}>
         <Typography sx={{ fontSize: 14 }} color="success.dark" gutterBottom>
           {props.senator.first_name} {props.senator.last_name}
         </Typography>
-        <Typography variant="h6" component="div"></Typography>
       </CardContent>
       <CardActions>
         <IconButton sx={{ p: 0 }} onClick={handleInfoClick}>
