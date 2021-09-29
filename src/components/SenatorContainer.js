@@ -40,14 +40,14 @@ const SenatorContainer = (props) => {
     const fetchSenatorList = async () => {
       try {
         const response = await axios.get('/senate')
-        console.log(response.data)
-        setSenatorList(response.data)
+        console.log(response.data.results[0].members)
+        setSenatorList(response.data.results[0].members)
       } catch (error) {
         console.log(error)
       }
     }
     fetchSenatorList()
-  }, [props.url, senatorList])
+  }, [props.url])
 
   return (
     <Box
