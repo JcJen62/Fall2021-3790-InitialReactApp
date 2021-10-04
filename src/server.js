@@ -18,5 +18,16 @@ app.get('/senate', (req, res) => {
   .catch((err) => res.status(500).json({type: 'error', message: err.message }))
 })
 
+app.get('/house', (req, res) => {
+  axios
+    .get('https://api.propublica.org/congress/v1/117/house/members.json', {
+      headers: { 'x-api-key': process.env.PROPUBLICA_API_KEY },
+    })
+    .then((response) => res.json(response.data))
+    .catch((err) =>
+      res.status(500).json({ type: 'error', message: err.message })
+    )
+})
+
 const PORT = process.env.PORT || 9000
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))
