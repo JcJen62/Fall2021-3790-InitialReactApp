@@ -11,7 +11,8 @@ app.use((req, res, next) => {
 })
 
 app.get('/senate', (req, res) => {
-  axios.get('https://api.propublica.org/congress/v1/117/senate/members.json', {
+  console.log(req)
+  axios.get(`https://api.propublica.org/congress/v1/117/senate/members.json`, {
     headers: { 'x-api-key': process.env.PROPUBLICA_API_KEY}
   })
   .then((response) => res.json(response.data))

@@ -1,12 +1,14 @@
 import './App.css'
 import SenatorContainer from './components/SenatorContainer'
-
+import { CongressContextProvider } from './contexts/CongressContext'
 
 const App = () => {
   return (
-      <div className="App">
+    <div className="App">
+      <CongressContextProvider>
         <SenatorContainer />
-      </div>
+      </CongressContextProvider>
+    </div>
   )
 }
 

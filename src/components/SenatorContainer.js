@@ -1,10 +1,11 @@
 import * as React from 'react'
-import { senators } from '../data/senate'
+//import { senators } from '../data/senate'
 import SenatorCard from './SenatorCard'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import { Typography } from '@mui/material'
-import axios from 'axios'
+//import axios from 'axios'
+import { useCongressContext } from '../contexts/CongressContext'
 
 const style = {
   position: 'absolute',
@@ -23,21 +24,7 @@ const SenatorContainer = () => {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [favorites, setFavorites] = React.useState([])
-  const [senatorList, setSenatorList] = React.useState([])
-
-  React.useEffect(() => {
-    const fetchSenatorList = async () => {
-      console.log('I want to call my api now')
-      try {
-        const response = await axios.get('/senate')
-        console.log(response.data.results[0].members)
-        setSenatorList(response.data.results[0].members)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    fetchSenatorList()
-  }, [])
+  const memberData = useCongressContext()
 
   const addToFavorites = (senator) => {
     console.log(`${senator} was clicked to add to favorites`)
@@ -59,7 +46,7 @@ const SenatorContainer = () => {
         flexWrap: 'wrap',
       }}
     >
-      {senatorList.map((senator) => {
+      {memberData.senators.map((senator) => {
         return (
           <SenatorCard
             key={senator.id}
