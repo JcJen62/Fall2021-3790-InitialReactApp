@@ -40,12 +40,14 @@ const SenatorContainer = () => {
   }
 
   return (
-    <Box
-      sx={{
+    <>
+      <Box>
+        <Typography variant="h3">Senators: {memberData.senators.length} Reps: {memberData.reps.length}</Typography>
+      </Box>
+      <Box       sx={{
         display: 'flex',
         flexWrap: 'wrap',
-      }}
-    >
+      }}>
       {memberData.senators.map((senator) => {
         return (
           <SenatorCard
@@ -61,7 +63,8 @@ const SenatorContainer = () => {
           <Typography variant="h6">Senator Information</Typography>
         </Box>
       </Modal>
-    </Box>
+      </Box>
+      </>
   )
 }
 

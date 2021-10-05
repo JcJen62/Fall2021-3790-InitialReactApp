@@ -10,12 +10,12 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get('/', (req, res) => {
+app.get('/congress', (req, res) => {
   const chamber = req.query.chamber
   axios.get(`https://api.propublica.org/congress/v1/117/${chamber}/members.json`, {
     headers: { 'x-api-key': process.env.PROPUBLICA_API_KEY}
   })
-  .then((response) => res.json(response.data))
+    .then((response) => res.json(response.data))
   .catch((err) => res.status(500).json({type: 'error', message: err.message }))
 })
 
