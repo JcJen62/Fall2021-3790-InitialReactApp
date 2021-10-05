@@ -10,9 +10,9 @@ app.use((req, res, next) => {
   next()
 })
 
-app.get('/senate', (req, res) => {
-  console.log(req)
-  axios.get(`https://api.propublica.org/congress/v1/117/senate/members.json`, {
+app.get('/', (req, res) => {
+  const chamber = req.query.chamber
+  axios.get(`https://api.propublica.org/congress/v1/117/${chamber}/members.json`, {
     headers: { 'x-api-key': process.env.PROPUBLICA_API_KEY}
   })
   .then((response) => res.json(response.data))
