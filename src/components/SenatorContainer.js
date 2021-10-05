@@ -42,29 +42,34 @@ const SenatorContainer = () => {
   return (
     <>
       <Box>
-        <Typography variant="h3">Senators: {memberData.senators.length} Reps: {memberData.reps.length}</Typography>
+        <Typography variant='h3'>
+          Senators: {memberData.senators.length} Reps: {memberData.reps.length}
+        </Typography>
       </Box>
-      <Box       sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-      }}>
-      {memberData.senators.map((senator) => {
-        return (
-          <SenatorCard
-            key={senator.id}
-            addToFavoritesFunction={addToFavorites}
-            modalFunction={handleOpen}
-            senator={{ ...senator }}
-          />
-        )
-      })}
-      <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>
-          <Typography variant="h6">Senator Information</Typography>
-        </Box>
-      </Modal>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+        }}
+      >
+        {memberData.senators.map((senator) => {
+          return (
+            <SenatorCard
+              key={senator.id}
+              addToFavoritesFunction={addToFavorites}
+              modalFunction={handleOpen}
+              senator={{ ...senator }}
+            />
+          )
+        })}
+
+        <Modal open={open} onClose={handleClose}>
+          <Box sx={style}>
+            <Typography variant='h6'>Senator Information</Typography>
+          </Box>
+        </Modal>
       </Box>
-      </>
+    </>
   )
 }
 
