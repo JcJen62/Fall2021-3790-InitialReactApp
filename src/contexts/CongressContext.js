@@ -12,19 +12,20 @@ export const CongressContextProvider = (props) => {
 
   React.useEffect(() => {
     // first define the async function
-    const fetchSenators = async () => {
+    const fetchMembers= async () => {
+      const senateURL = `/.netlify/functions/congress`
       try {
-        const response = await axios.get('/senate')
-        const members = await response.data.results[0].members
+        const senatorsResponse = await axios.get(senateURL)
+        const senators = await senatorsResponse.data.results[0].members
 
-        console.log(response)
-        setSenators(members)
+        //console.log(response)
+        setSenators(senators)
       } catch (error) {
         console.log(error)
       }
     }
     // then call the function
-    fetchSenators()
+    fetchMembers()
   }, [])
 
   return (
