@@ -8,7 +8,7 @@ const CongressContext = React.createContext({
 
 export const CongressContextProvider = (props) => {
   const [senators, setSenators] = React.useState([])
-  const [reps, setReps] = React.useState([])
+  //const [reps, setReps] = React.useState([])
 
   React.useEffect(() => {
     // first define the async function
@@ -31,7 +31,7 @@ export const CongressContextProvider = (props) => {
   return (
     <CongressContext.Provider value={{
       senators,
-      reps,
+      //reps,
     }}>
       {props.children}
     </CongressContext.Provider>
