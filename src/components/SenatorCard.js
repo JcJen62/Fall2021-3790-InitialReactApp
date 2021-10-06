@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Card from '@mui/material/Card'
+import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import CardActions from '@mui/material/CardActions'
@@ -39,6 +40,8 @@ const SenatorCard = (props) => {
         }, */
       }}
     >
+      <CardMedia component='img' alt='Congress member' height='200'
+      image={`https://www.govtrack.us/static/legislator-photos/${props.senator.govtrack_id}-200px.jpeg`}/>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="success.dark" gutterBottom>
           {props.senator.first_name} {props.senator.last_name}

@@ -40,6 +40,12 @@ const SenatorContainer = () => {
   }
 
   return (
+    <>
+    <Box>
+      <Typography variant='h4'>
+        Senators: {memberData.senators.length} Reps: {memberData.reps.length}
+      </Typography>
+    </Box>
     <Box
       sx={{
         display: 'flex',
@@ -62,6 +68,7 @@ const SenatorContainer = () => {
         </Box>
       </Modal>
     </Box>
+    </>
   )
 }
 
