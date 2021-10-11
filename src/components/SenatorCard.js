@@ -7,6 +7,7 @@ import CardActions from '@mui/material/CardActions'
 import IconButton from '@mui/material/IconButton'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import palpatinePic from './Emperor-Palpatine.jpeg'
 
 const SenatorCard = (props) => {
   const [favorite, setFavorite] = React.useState(false)
@@ -23,6 +24,11 @@ const SenatorCard = (props) => {
     props.addToFavoritesFunction(props.senator)
   }
 
+  const handleImageLoadError = (e) => {
+    e.target.onerror = null
+    e.target.src = palpatinePic
+  }
+
   return (
     <Card
       className="card"
@@ -30,10 +36,8 @@ const SenatorCard = (props) => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        width: 168,
-        height: 120,
         m: 1,
-        border: 5,
+        border: 2,
         borderColor: partyColor
 /*         '&:hover': {
           opacity: [0.9, 0.8, 0.7],
@@ -41,12 +45,11 @@ const SenatorCard = (props) => {
       }}
     >
       <CardMedia component='img' alt='Congress member' height='200'
-      image={`https://www.govtrack.us/static/legislator-photos/${props.senator.govtrack_id}-200px.jpeg`}/>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="success.dark" gutterBottom>
+      image={`https://www.govtrack.us/static/legislator-photos/${props.senator.govtrack_id}-100px.jpeg`} onError={handleImageLoadError}/>
+      <CardContent sx={{ p: 0 }}>
+        <Typography color="success.dark" gutterBottom variant='subtitle2'>
           {props.senator.first_name} {props.senator.last_name}
         </Typography>
-        <Typography variant="h6" component="div"></Typography>
       </CardContent>
       <CardActions>
         <IconButton sx={{ p: 0 }} onClick={handleInfoClick}>

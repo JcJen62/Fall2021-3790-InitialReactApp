@@ -14,7 +14,7 @@ exports.handler = async function (event, context) {
     }
   } catch (err) {
     return {
-      statusCade: 404,
+      statusCode: 404,
       body: err.toString()
     }
   }
