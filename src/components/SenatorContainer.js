@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { senators } from '../data/senate'
+//import { senators } from '../data/senate'
 import SenatorCard from './SenatorCard'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import { Typography } from '@mui/material'
+//import axios from 'axios'
+import { useCongressContext } from '../contexts/CongressContext'
 
 const style = {
   position: 'absolute',
@@ -22,30 +24,35 @@ const SenatorContainer = () => {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [favorites, setFavorites] = React.useState([])
+  const memberData = useCongressContext()
 
   const addToFavorites = (senator) => {
     console.log(`${senator} was clicked to add to favorites`)
-    if (!favorites.includes(senator.id)) { // not currently a favorite, so add it
+    if (!favorites.includes(senator.id)) {
+      // not currently a favorite, so add it
       setFavorites((prevState) => [...prevState, senator.id])
     } else {
-      setFavorites(() => { // duplicate so filter and return new array
+      setFavorites(() => {
+        // duplicate so filter and return new array
         return favorites.filter((item) => item !== senator.id)
-      }) 
+      })
     }
   }
 
   return (
+    <>
+    <Box>
+      <Typography variant='h4'>
+        Senators: {memberData.senators.length} Reps: {memberData.reps.length}
+      </Typography>
+    </Box>
     <Box
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
       }}
     >
-      {favorites &&
-        favorites.map((senatorId) => {
-          return <p key={senatorId}>{senatorId}</p>
-        })}
-      {senators.map((senator) => {
+      {memberData.senators.map((senator) => {
         return (
           <SenatorCard
             key={senator.id}
@@ -61,6 +68,7 @@ const SenatorContainer = () => {
         </Box>
       </Modal>
     </Box>
+    </>
   )
 }
 
