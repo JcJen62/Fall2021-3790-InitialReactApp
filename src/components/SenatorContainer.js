@@ -43,7 +43,7 @@ const SenatorContainer = () => {
     <>
     <Box>
       <Typography variant='h4'>
-        Senators: {memberData.senators.length} Reps: {memberData.reps.length}
+        
       </Typography>
     </Box>
     <Box
