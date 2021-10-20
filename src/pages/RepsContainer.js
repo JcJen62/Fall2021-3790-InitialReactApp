@@ -19,7 +19,7 @@ const style = {
   p: 4,
 }
 
-const SenatorContainer = () => {
+const RepsContainer = () => {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -46,23 +46,23 @@ const SenatorContainer = () => {
         flexWrap: 'wrap',
       }}
     >
-      {memberData.senators.map((senator) => {
+      {memberData.reps.map((rep) => {
         return (
           <SenatorCard
-            key={senator.id}
+            key={rep.id}
             addToFavoritesFunction={addToFavorites}
             modalFunction={handleOpen}
-            senator={{ ...senator }}
+            senator={{ ...rep }}
           />
         )
       })}
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <Typography variant="h6">Senator Information</Typography>
+          <Typography variant="h6">Rep Information</Typography>
         </Box>
       </Modal>
     </Box>
   )
 }
 
-export default SenatorContainer
+export default RepsContainer

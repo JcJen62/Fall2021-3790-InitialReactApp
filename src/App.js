@@ -1,5 +1,6 @@
 import './App.css'
 import SenatorContainer from './pages/SenatorContainer'
+import RepsContainer from './pages/RepsContainer'
 import { CongressContextProvider } from './contexts/CongressContext'
 import ButtonAppBar from './components/nav/ButtonAppBar'
 import { Route } from 'react-router-dom'
@@ -13,7 +14,8 @@ const App = () => {
       <CongressContextProvider>
         <ButtonAppBar />
         <Route path="/welcome"><Welcome/></Route>
-        <Route path="/congress"><SenatorContainer /></Route>
+        <Route path="/senators"><SenatorContainer /></Route>
+        <Route path="/reps"><RepsContainer/></Route>
         <Route path="/products"><Products/></Route>
         <Route path="/login"><LoginForm/></Route>
       </CongressContextProvider>
