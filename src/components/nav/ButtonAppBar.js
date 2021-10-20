@@ -7,15 +7,16 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useCongressContext } from '../../contexts/CongressContext'
-import Modal from '@mui/material/Modal'
-import LoginForm from '../login/LoginForm'
+//import Modal from '@mui/material/Modal'
+//import LoginForm from '../login/LoginForm'
+import { NavLink } from 'react-router-dom'
 
 
 const ButtonAppBar = () => {
   const memberData = useCongressContext()
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  // const [open, setOpen] = React.useState(false)
+  // const handleOpen = () => setOpen(true)
+  //const handleClose = () => setOpen(false)
 
   return (
     <>
@@ -35,15 +36,15 @@ const ButtonAppBar = () => {
               Senators: {memberData.senators.length} Reps:{' '}
               {memberData.reps.length}
             </Typography>
-            <Button color='inherit' onClick={handleOpen}>
-              Login
+            <Button color='inherit'>
+              <NavLink to="/login">Login</NavLink>
             </Button>
           </Toolbar>
         </AppBar>
       </Box>
-      <Modal open={open}>
+{/*       <Modal open={open}>
               <LoginForm closeHandler={handleClose}/>
-      </Modal>
+      </Modal> */}
     </>
   )
 }

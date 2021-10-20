@@ -1,6 +1,6 @@
 import * as React from 'react'
 //import { senators } from '../data/senate'
-import SenatorCard from './SenatorCard'
+import SenatorCard from '../components/SenatorCard'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import { Typography } from '@mui/material'

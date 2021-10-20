@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from '@mui/material'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { useHistory } from 'react-router-dom'
 
 const style = {
   position: 'absolute',
@@ -15,8 +16,8 @@ const style = {
 }
 
 const LoginForm = (props) => {
-    const { closeHandler } = props
-
+  const history = useHistory()
+  const handleClose = () => history.push('/welcome')
   return (
     <Box sx={style}>
       <Formik
@@ -35,8 +36,8 @@ const LoginForm = (props) => {
             .required('Password is required'),
         })}
         onSubmit={(value, { setErrors, setStatus, setSubmitting }) => {
-            try {
-              console.log('Successfully submitted!')
+          try {
+            console.log('Successfully submitted!')
             setStatus({ success: true })
             setSubmitting(false)
           } catch (err) {
@@ -45,7 +46,7 @@ const LoginForm = (props) => {
             setErrors({ submit: err.message })
             setSubmitting(false)
           } finally {
-              closeHandler()
+            handleClose()
           }
         }}
       >
@@ -63,35 +64,35 @@ const LoginForm = (props) => {
               error={Boolean(touched.email && errors.email)}
               fullWidth
               helperText={touched.email && errors.email}
-              label='Email Address'
-              margin='normal'
-              name='email'
+              label="Email Address"
+              margin="normal"
+              name="email"
               onBlur={handleBlur}
               onChange={handleChange}
-              type='email'
-              variant='outlined'
+              type="email"
+              variant="outlined"
               value={values.email}
             />
             <TextField
               error={Boolean(touched.password && errors.password)}
               fullWidth
               helperText={touched.password && errors.password}
-              label='Password'
-              margin='normal'
-              name='password'
+              label="Password"
+              margin="normal"
+              name="password"
               onBlur={handleBlur}
               onChange={handleChange}
-              type='password'
-              variant='outlined'
+              type="password"
+              variant="outlined"
               value={values.password}
             />
             <Button
-              color='primary'
+              color="primary"
               disabled={isSubmitting}
               fullWidth
-              size='large'
-              variant='contained'
-              type='submit'
+              size="large"
+              variant="contained"
+              type="submit"
             >
               Log In
             </Button>
