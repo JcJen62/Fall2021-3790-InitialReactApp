@@ -3,7 +3,7 @@ import SenatorContainer from './pages/SenatorContainer'
 import RepsContainer from './pages/RepsContainer'
 import { CongressContextProvider } from './contexts/CongressContext'
 import ButtonAppBar from './components/nav/ButtonAppBar'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import Welcome from './pages/Welcome'
 import Products from './pages/Products'
 import LoginForm from './components/login/LoginForm'
@@ -13,6 +13,9 @@ const App = () => {
     <div className='App'>
       <CongressContextProvider>
         <ButtonAppBar />
+        <Route path='/' exact>
+          <Redirect to='/welcome'/>
+        </Route>
         <Route path="/welcome"><Welcome/></Route>
         <Route path="/senators"><SenatorContainer /></Route>
         <Route path="/reps"><RepsContainer/></Route>
