@@ -8,20 +8,24 @@ import IconButton from '@mui/material/IconButton'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import palpatinePic from './Emperor-Palpatine.jpeg'
+import { useHistory } from 'react-router-dom'
 
 const SenatorCard = (props) => {
   const [favorite, setFavorite] = React.useState(false)
+  const history = useHistory()
+  const { senator } = props
 
   const partyColor = props.senator.party === 'D' ? '#0000ff' : '#e71d36'
 
   const handleInfoClick = () => {
-    props.modalFunction()
+    //props.modalFunction()
+    history.push(`/member/${senator.id}`)
   }
 
   const handleFavoriteClick = () => {
     //console.log(props.senator.id)
     setFavorite(!favorite)
-    props.addToFavoritesFunction(props.senator)
+    props.addToFavoritesFunction(senator)
   }
 
   const handleImageLoadError = (e) => {

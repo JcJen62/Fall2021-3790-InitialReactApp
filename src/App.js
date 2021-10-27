@@ -5,8 +5,9 @@ import { CongressContextProvider } from './contexts/CongressContext'
 import ButtonAppBar from './components/nav/ButtonAppBar'
 import { Route, Redirect } from 'react-router-dom'
 import Welcome from './pages/Welcome'
-import Products from './pages/Products'
 import LoginForm from './components/login/LoginForm'
+import MemberDetail from './pages/MemberDetail'
+import NotFound from './pages/NotFound'
 
 const App = () => {
   return (
@@ -25,12 +26,15 @@ const App = () => {
         <Route path='/reps'>
           <RepsContainer />
         </Route>
-        <Route path='/products'>
-          <Products />
+        <Route path='/member/:memberId' exact>
+          <MemberDetail />
         </Route>
         <Route path='/login'>
           <LoginForm />
         </Route>
+{/*         <Route path='*'>
+          <NotFound/>
+        </Route> */}
       </CongressContextProvider>
     </div>
   )
