@@ -34,7 +34,11 @@ const MemberDetail = () => {
       display: 'flex',
       justifyContent: 'center'
     }}>
-      <Card>
+      <Card sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
+      }}>
       <CardMedia component='img' alt='Congress member' height='200'
       image={`https://www.govtrack.us/static/legislator-photos/${member.govtrack_id}-200px.jpeg`} onError={handleImageLoadError}/>
       <CardContent sx={{ p: 0 }}>
