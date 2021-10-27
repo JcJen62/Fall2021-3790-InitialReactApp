@@ -4,11 +4,13 @@ import axios from 'axios'
 const CongressContext = React.createContext({
   senators: [],
   reps: [],
+  allMembers: [],
 })
 
 export const CongressContextProvider = (props) => {
   const [senators, setSenators] = React.useState([])
   const [reps, setReps] = React.useState([])
+  const [allMembers, setAllMembers] = React.useState([])
 
   React.useEffect(() => {
     // first define the async function
@@ -23,6 +25,7 @@ export const CongressContextProvider = (props) => {
 
         setSenators(senators)
         setReps(reps)
+        setAllMembers([...senators, ...reps])
       } catch (error) {
         console.log(error)
       }
@@ -35,6 +38,7 @@ export const CongressContextProvider = (props) => {
     <CongressContext.Provider value={{
       senators,
       reps,
+      allMembers,
     }}>
       {props.children}
     </CongressContext.Provider>
