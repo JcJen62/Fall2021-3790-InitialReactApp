@@ -21,21 +21,21 @@ const ButtonAppBar = () => {
     setIsOpen(!isOpen)
   }
 
-  const handleNavChoice = () => {
-    history.push('/senators')
+  const handleNavChoice = (choice) => {
+    history.push(`/${choice}`)
     toggleDrawer()
   }
 
   const drawerItemList = () => (
     <Box sx={{ width: 250 }} role="presentation">
       <List>
-        <ListItem button onClick={handleNavChoice}>
+        <ListItem button onClick={() => handleNavChoice('senators')}>
           <ListItemIcon>
             <EmojiPeopleIcon/>
           </ListItemIcon>
           <ListItemText primary='Senators' />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => handleNavChoice('reps')}>
           <ListItemIcon>
             <GroupIcon/>
           </ListItemIcon>
