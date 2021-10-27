@@ -7,15 +7,43 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useCongressContext } from '../../contexts/CongressContext'
-import Modal from '@mui/material/Modal'
-import LoginForm from '../login/LoginForm'
-
+import { NavLink, useHistory } from 'react-router-dom'
+import { ListItem, List, Drawer, ListItemIcon, ListItemText } from '@mui/material'
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
+import GroupIcon from '@mui/icons-material/Group';
 
 const ButtonAppBar = () => {
   const memberData = useCongressContext()
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const history = useHistory()
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  const toggleDrawer = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const handleNavChoice = () => {
+    history.push('/senators')
+    toggleDrawer()
+  }
+
+  const drawerItemList = () => (
+    <Box sx={{ width: 250 }} role="presentation">
+      <List>
+        <ListItem button onClick={handleNavChoice}>
+          <ListItemIcon>
+            <EmojiPeopleIcon/>
+          </ListItemIcon>
+          <ListItemText primary='Senators' />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <GroupIcon/>
+          </ListItemIcon>
+          <ListItemText primary='Representatives'/>
+        </ListItem>
+      </List>
+    </Box>
+  )
 
   return (
     <>
@@ -28,6 +56,7 @@ const ButtonAppBar = () => {
               color='inherit'
               aria-label='menu'
               sx={{ mr: 2 }}
+              onClick={toggleDrawer}
             >
               <MenuIcon />
             </IconButton>
@@ -35,15 +64,15 @@ const ButtonAppBar = () => {
               Senators: {memberData.senators.length} Reps:{' '}
               {memberData.reps.length}
             </Typography>
-            <Button color='inherit' onClick={handleOpen}>
-              Login
+            <Button color='inherit'>
+              <NavLink to="/login">Login</NavLink>
             </Button>
           </Toolbar>
         </AppBar>
       </Box>
-      <Modal open={open}>
-              <LoginForm closeHandler={handleClose}/>
-      </Modal>
+      <Drawer anchor='left' open={isOpen} onClose={toggleDrawer}>
+        {drawerItemList()}
+      </Drawer>
     </>
   )
 }
