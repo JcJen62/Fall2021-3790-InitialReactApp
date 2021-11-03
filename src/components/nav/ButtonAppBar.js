@@ -18,10 +18,12 @@ import {
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
 import GroupIcon from '@mui/icons-material/Group'
 import HomeIcon from '@mui/icons-material/Home'
+import { useIdentityContext } from "react-netlify-identity-gotrue"
 
 const ButtonAppBar = () => {
   const memberData = useCongressContext()
   const history = useHistory()
+  const identity = useIdentityContext()
   const [isOpen, setIsOpen] = React.useState(false)
 
   const toggleDrawer = () => {
@@ -80,8 +82,18 @@ const ButtonAppBar = () => {
               {memberData.reps.length}
             </Typography>
             <Button color="inherit">
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/signup">Sign Up</NavLink>
             </Button>
+           
+              <Button color="inherit">
+                <NavLink to="/login">Login</NavLink>
+              </Button>
+              {identity.user &&
+              <Button color="inherit" onClick={identity.logout}>Logout
+              </Button>}
+            
+            <Button color="inherit" onClick={identity.logout}>Logout
+              </Button>
           </Toolbar>
         </AppBar>
       </Box>
