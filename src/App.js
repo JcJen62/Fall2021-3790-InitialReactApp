@@ -8,8 +8,10 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import Welcome from './pages/Welcome'
 import MemberDetail from './pages/MemberDetail'
 import LoginForm from './components/login/LoginForm'
+import SignupForm from './components/login/SignupForm'
 import NotFound from './pages/NotFound'
 import { Box, CircularProgress } from '@mui/material'
+import NetlifyIdentityContext from 'react-netlify-identity-gotrue'
 
 const SenatorContainer = React.lazy(() => import('./pages/SenatorContainer'))
 const RepsContainer = React.lazy(() => import('./pages/RepsContainer'))
@@ -24,6 +26,7 @@ const style = {
 const App = () => {
   return (
     <div className="App">
+      <NetlifyIdentityContext url='https://confident-yonath-6c5a52.netlify.app'>
       <CongressContextProvider>
         <ButtonAppBar />
         <Suspense
@@ -52,12 +55,16 @@ const App = () => {
             <Route path="/login">
               <LoginForm />
             </Route>
+            <Route path="/signup">
+              <SignupForm />
+            </Route>
             <Route path="*">
               <NotFound />
             </Route>
           </Switch>
         </Suspense>
       </CongressContextProvider>
+      </NetlifyIdentityContext>
     </div>
   )
 }

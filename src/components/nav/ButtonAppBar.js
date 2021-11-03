@@ -80,6 +80,9 @@ const ButtonAppBar = () => {
               {memberData.reps.length}
             </Typography>
             <Button color="inherit">
+              <NavLink to="/signup">Sign Up</NavLink>
+            </Button>
+            <Button color="inherit">
               <NavLink to="/login">Login</NavLink>
             </Button>
           </Toolbar>

@@ -16,7 +16,7 @@ const style = {
   p: 4,
 }
 
-const LoginForm = (props) => {
+const SignupForm = (props) => {
   const history = useHistory()
   const identity = useIdentityContext()
   const handleClose = () => history.push('/welcome')
@@ -24,10 +24,15 @@ const LoginForm = (props) => {
     <Box sx={style}>
       <Formik
         initialValues={{
+          userName: 'Thor Anderson',
           email: 'foo@example.com',
           password: 'Password123!',
         }}
         validationSchema={Yup.object().shape({
+          userName: Yup.string()
+          .min(4, 'Must be at least 4 characters')
+          .max(50, 'Must be less than 50 characters')
+          .required('User name is required'),
           email: Yup.string()
             .email('Must be a valid email')
             .max(255)
@@ -38,23 +43,22 @@ const LoginForm = (props) => {
             .required('Password is required'),
         })}
         onSubmit={async (value, { setErrors, setStatus, setSubmitting }) => {
-          try { 
+          try {
             setStatus({ success: true })
             setSubmitting(false)
-            await identity.login({
-              email: value.email,
-              password: value.password
+            await identity.signup({
+              email: value.email, password: value.password, user_metadata: {
+                full_name: value.userName
+              }
             }).then(() => {
-              console.log('Successfully submitted!')
               handleClose()
+              console.log('Successfully submitted!')
             })
           } catch (err) {
             console.error(err)
             setStatus({ success: false })
             setErrors({ submit: err.message })
             setSubmitting(false)
-          } finally {
-            handleClose()
           }
         }}
       >
@@ -68,6 +72,19 @@ const LoginForm = (props) => {
           touched,
         }) => (
           <form noValidate onSubmit={handleSubmit}>
+            <TextField
+              error={Boolean(touched.userName && errors.userName)}
+              fullWidth
+              helperText={touched.userName && errors.userName}
+              label="User Name"
+              margin="normal"
+              name="userName"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              type="text"
+              variant="outlined"
+              value={values.userName}
+            />
             <TextField
               error={Boolean(touched.email && errors.email)}
               fullWidth
@@ -102,7 +119,7 @@ const LoginForm = (props) => {
               variant="contained"
               type="submit"
             >
-              Log In
+              Sign Up
             </Button>
           </form>
         )}
@@ -111,4 +128,4 @@ const LoginForm = (props) => {
   )
 }
 
-export default LoginForm
+export default SignupForm
