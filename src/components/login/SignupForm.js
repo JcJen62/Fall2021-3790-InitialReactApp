@@ -2,7 +2,8 @@ import { Box, Button, TextField } from '@mui/material'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useHistory } from 'react-router-dom'
-import { useIdentityContext } from 'react-netlify-identity-gotrue'
+//import { useIdentityContext } from 'react-netlify-identity-gotrue'
+import GoTrue from 'gotrue-js'
 
 const style = {
   position: 'absolute',
@@ -16,9 +17,15 @@ const style = {
   p: 4,
 }
 
+const auth = new GoTrue({
+  APIUrl: 'https://confident-yonath-6c5a52.netlify.app/.netlify/identity',
+  audience: '',
+  setCookie: false,
+})
+
 const SignupForm = (props) => {
   const history = useHistory()
-  const identity = useIdentityContext()
+  //const identity = useIdentityContext()
   const handleClose = () => history.push('/welcome')
   return (
     <Box sx={style}>
@@ -46,14 +53,8 @@ const SignupForm = (props) => {
           try {
             setStatus({ success: true })
             setSubmitting(false)
-            await identity.signup({
-              email: value.email, password: value.password, user_metadata: {
-                full_name: value.userName
-              }
-            }).then(() => {
-              handleClose()
-              console.log('Successfully submitted!')
-            })
+            auth.signup(value.email, value.password).then((response) => console.log('Confirmation email sent', response))
+            .catch((error) => console.log("It's an error: ", error))
           } catch (err) {
             console.error(err)
             setStatus({ success: false })
