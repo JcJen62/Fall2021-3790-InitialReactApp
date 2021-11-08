@@ -39,7 +39,7 @@ const App = () => {
         >
           <Switch>
             <Route path="/" exact>
-              <Redirect to="/welcome" />
+              <ConfirmUser/>
             </Route>
             <Route path="/welcome">
               <Welcome />
@@ -59,9 +59,6 @@ const App = () => {
             <Route path="/signup">
               <SignupForm />
               </Route>
-              <Route path="/confirm">
-              <ConfirmUser />
-            </Route>
             <Route path="*">
               <NotFound />
             </Route>
