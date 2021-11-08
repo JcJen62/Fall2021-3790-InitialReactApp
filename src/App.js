@@ -11,7 +11,7 @@ import LoginForm from './components/login/LoginForm'
 import SignupForm from './components/login/SignupForm'
 import NotFound from './pages/NotFound'
 import { Box, CircularProgress } from '@mui/material'
-//import NetlifyIdentityContext from 'react-netlify-identity-gotrue'
+import { IdentityAuthContextProvider } from './contexts/IdentityAuthContext'
 
 const SenatorContainer = React.lazy(() => import('./pages/SenatorContainer'))
 const RepsContainer = React.lazy(() => import('./pages/RepsContainer'))
@@ -26,8 +26,8 @@ const style = {
 const App = () => {
   return (
     <div className="App">
-{/*       <NetlifyIdentityContext url='https://confident-yonath-6c5a52.netlify.app'>
- */}      <CongressContextProvider>
+      <IdentityAuthContextProvider >
+      <CongressContextProvider>
         <ButtonAppBar />
         <Suspense
           fallback={
@@ -63,8 +63,8 @@ const App = () => {
             </Route>
           </Switch>
         </Suspense>
-      </CongressContextProvider>
-{/*       </NetlifyIdentityContext> */}
+        </CongressContextProvider>
+      </IdentityAuthContextProvider>
     </div>
   )
 }

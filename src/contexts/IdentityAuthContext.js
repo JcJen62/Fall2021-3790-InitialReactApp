@@ -3,7 +3,6 @@ import GoTrue from 'gotrue-js'
 
 const IdentityAuthContext = React.createContext({
     user: {},
-    auth: {},
     login: () => { },
     logout: () => { },
     signup: () => { },
@@ -13,12 +12,17 @@ export const IdentityAuthContextProvider = (props) => {
     const [user, setUser] = React.useState({})
     const [auth, setAuth] = React.useState({})
 
+    // eslint-disable-line react-hooks/exhaustive-deps
     React.useEffect(() => {
-        setAuth(new GoTrue({
-            APIUrl: 'https://confident-yonath-6c5a52.netlify.app/.netlify/identity',
-            audience: '',
-            setCookie: false,
-        }))
+        const initializeAuth = () => {
+            setAuth(new GoTrue({
+                APIUrl: 'https://confident-yonath-6c5a52.netlify.app/.netlify/identity',
+                audience: '',
+                setCookie: false,
+            }))
+        }
+        initializeAuth()
+        console.log(auth)
     }, [])
 
     const login = (email, password, remember) => {
