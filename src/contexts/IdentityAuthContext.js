@@ -12,7 +12,6 @@ export const IdentityAuthContextProvider = (props) => {
     const [user, setUser] = React.useState({})
     const [auth, setAuth] = React.useState({})
 
-    // eslint-disable-line react-hooks/exhaustive-deps
     React.useEffect(() => {
         const initializeAuth = () => {
             setAuth(new GoTrue({
@@ -22,7 +21,6 @@ export const IdentityAuthContextProvider = (props) => {
             }))
         }
         initializeAuth()
-        console.log(auth)
     }, [])
 
     const login = (email, password, remember) => {
