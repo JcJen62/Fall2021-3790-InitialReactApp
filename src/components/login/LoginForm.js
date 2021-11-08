@@ -3,7 +3,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { useHistory } from 'react-router-dom'
 import { useIdentityAuthContext } from '../../contexts/IdentityAuthContext'
-import { useLocation } from 'react-router-dom'
+//import { useLocation } from 'react-router-dom'
 
 const style = {
   position: 'absolute',
@@ -19,8 +19,8 @@ const style = {
 
 const LoginForm = (props) => {
   const history = useHistory()
-  const location = useLocation()
-  const { confirm } = useIdentityAuthContext()
+  //const location = useLocation()
+  //const { confirm } = useIdentityAuthContext()
   const { login } = useIdentityAuthContext()
   const handleClose = () => history.push('/welcome')
   return (
