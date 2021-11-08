@@ -1,14 +1,17 @@
 import { useIdentityAuthContext } from '../../contexts/IdentityAuthContext'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 const ConfirmUser = () => {
-  const { user } = useIdentityAuthContext()
+  const { confirm } = useIdentityAuthContext()
   const location = useLocation()
-  console.log(location)
+  const history = useHistory()
+  const startIndex = location.hash.indexOf('=')
+  const token = location.hash.slice(startIndex + 1)
 
+  confirm(token, true)
+  history.push('/login')
   return (
-    !user ? <h1>Please check your email to confirm your account.</h1> :
-      <h1>Welcome {user?.email}!</h1>
+    <h1>Should be confirming and pushing to Login page</h1> 
   )
 }
 
