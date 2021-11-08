@@ -26,7 +26,7 @@ const auth = new GoTrue({
 const SignupForm = (props) => {
   const history = useHistory()
   //const identity = useIdentityContext()
-  const handleClose = () => history.push('/welcome')
+  const handleClose = () => history.push('/login')
   return (
     <Box sx={style}>
       <Formik
@@ -53,7 +53,10 @@ const SignupForm = (props) => {
           try {
             setStatus({ success: true })
             setSubmitting(false)
-            auth.signup(value.email, value.password).then((response) => console.log('Confirmation email sent', response))
+            auth.signup(value.email, value.password).then((response) => {
+              console.log('Confirmation email sent', response)
+              handleClose()
+            })
             .catch((error) => console.log("It's an error: ", error))
           } catch (err) {
             console.error(err)
