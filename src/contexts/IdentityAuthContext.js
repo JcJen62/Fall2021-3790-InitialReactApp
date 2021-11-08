@@ -25,7 +25,7 @@ export const IdentityAuthContextProvider = (props) => {
     }, [])
 
     const login = (email, password, remember) => {
-        auth.login(email, password, remember)
+        return auth.login(email, password, remember)
             .then((response) => {
                 console.log('Success logging in!', response)
                 setUser(auth.currentUser())
@@ -38,13 +38,13 @@ export const IdentityAuthContextProvider = (props) => {
     }
 
     const signup = (email, password) => {
-        auth.signup(email, password)
+        return auth.signup(email, password)
             .then((response) => console.log('Confirmation email sent', response))
         .catch((error) => console.log("It's an error: ", error))
     }
 
     const confirm = (token, remember) => {
-        auth.confirm(token, remember)
+        return auth.confirm(token, remember)
             .then((response) => {
             console.log('Trying to confirm user', response)
             })
