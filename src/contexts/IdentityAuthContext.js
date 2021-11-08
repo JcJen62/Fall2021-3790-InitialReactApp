@@ -3,6 +3,7 @@ import GoTrue from 'gotrue-js'
 
 const IdentityAuthContext = React.createContext({
     user: {},
+    confirm: () => {},
     login: () => { },
     logout: () => { },
     signup: () => { },
@@ -42,10 +43,21 @@ export const IdentityAuthContextProvider = (props) => {
         .catch((error) => console.log("It's an error: ", error))
     }
 
+    const confirm = (token, remember) => {
+        auth.confirm(token, remember)
+            .then((response) => {
+            console.log('Trying to confirm user', response)
+            })
+            .catch((error) => {
+            console.log('Got an error: ', error)
+        })
+    }
+
 
 return (
     <IdentityAuthContext.Provider value={{
         user,
+        confirm,
         login,
         logout,
         signup,

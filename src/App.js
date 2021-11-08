@@ -12,6 +12,7 @@ import SignupForm from './components/login/SignupForm'
 import NotFound from './pages/NotFound'
 import { Box, CircularProgress } from '@mui/material'
 import { IdentityAuthContextProvider } from './contexts/IdentityAuthContext'
+import ConfirmUser from './components/login/ConfirmUser'
 
 const SenatorContainer = React.lazy(() => import('./pages/SenatorContainer'))
 const RepsContainer = React.lazy(() => import('./pages/RepsContainer'))
@@ -56,6 +57,9 @@ const App = () => {
               <LoginForm />
             </Route>
             <Route path="/signup">
+              <SignupForm />
+              </Route>
+              <Route path="/confirm">
               <SignupForm />
             </Route>
             <Route path="*">

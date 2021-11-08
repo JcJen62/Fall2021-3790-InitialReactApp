@@ -1,7 +1,7 @@
-import { useIdentityAuthContext } from '../contexts/IdentityAuthContext'
+import { useIdentityAuthContext } from '../../contexts/IdentityAuthContext'
 import { useLocation } from 'react-router-dom'
 
-const Welcome = () => {
+const ConfirmUser = () => {
   const { user } = useIdentityAuthContext()
   const location = useLocation()
   console.log(location)
@@ -12,4 +12,4 @@ const Welcome = () => {
   )
 }
 
-export default Welcome
+export default ConfirmUser
