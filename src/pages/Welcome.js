@@ -1,13 +1,13 @@
-import { useIdentityContext } from 'react-netlify-identity-gotrue'
+//import { useIdentityContext } from 'react-netlify-identity-gotrue'
 
 const Welcome = () => {
-  const identity = useIdentityContext()
+  //const identity = useIdentityContext()
 
-  console.log(identity)
+  //console.log(identity)
 
   return (
-    identity.provisionalUser ? <h1>Please check your email to confirm your account.</h1> :
-  <h1>Welcome {identity.user?.user_metadata?.full_name}!</h1>
+    // identity.provisionalUser ? <h1>Please check your email to confirm your account.</h1> :
+  <h1>Welcome !</h1>
   )
 }
 
