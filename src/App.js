@@ -60,7 +60,7 @@ const App = () => {
               <SignupForm />
               </Route>
               <Route path="/confirm">
-              <SignupForm />
+              <ConfirmUser />
             </Route>
             <Route path="*">
               <NotFound />
