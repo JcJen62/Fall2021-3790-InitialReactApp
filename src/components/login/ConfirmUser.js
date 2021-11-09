@@ -1,8 +1,10 @@
+import React from 'react'
 import { useIdentityAuthContext } from '../../contexts/IdentityAuthContext'
 import { useLocation, Redirect } from 'react-router-dom'
 
 const ConfirmUser = () => {
-  const { confirm } = useIdentityAuthContext()
+  //const [confirming, setConfirming] = useState(true)
+  const { confirm, user } = useIdentityAuthContext()
   const location = useLocation()
   //const history = useHistory()
   console.log(location.hash.includes('confirmation_token'))
@@ -11,16 +13,12 @@ const ConfirmUser = () => {
     const token = location.hash.slice(startIndex + 1)
     try {
       confirm(token, true)
-      return <Redirect to='/login'/>
-   }
-    catch (err) {
+    } catch (err) {
       console.error(err)
     }
   }
-  
-  return (
-    <h1>Confirming...</h1> 
-  )
+
+  return user ? <Redirect to='/login' /> : <Redirect to='/signup'/> 
 }
 
 export default ConfirmUser
