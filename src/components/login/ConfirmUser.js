@@ -9,13 +9,17 @@ const ConfirmUser = () => {
   if (location.hash.includes('confirmation_token')) {
     const startIndex = location.hash.indexOf('=')
     const token = location.hash.slice(startIndex + 1)
-
-    confirm(token, true)
-    return <Redirect to='/login'/>
+    try {
+      confirm(token, true)
+      return <Redirect to='/login'/>
+   }
+    catch (err) {
+      console.error(err)
+    }
   }
   
   return (
-    <h1>Should be confirming and pushing to Login page</h1> 
+    <h1>Confirming...</h1> 
   )
 }
 
