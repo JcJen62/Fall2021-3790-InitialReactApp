@@ -44,7 +44,7 @@ const LoginForm = (props) => {
           try { 
             setStatus({ success: true })
             setSubmitting(false)
-            login(value.email, value.password, true)
+            login(value.email, value.password)
             handleClose()
           } catch (err) {
             console.error(err)

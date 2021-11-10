@@ -4,9 +4,9 @@ import GoTrue from 'gotrue-js'
 const IdentityAuthContext = React.createContext({
     user: {},
     confirm: () => {},
-    login: () => { },
-    logout: () => { },
-    signup: () => { },
+    login: () => {},
+    logout: () => {},
+    signup: () => {},
 })
 
 export const IdentityAuthContextProvider = (props) => {
@@ -18,14 +18,14 @@ export const IdentityAuthContextProvider = (props) => {
             setAuth(new GoTrue({
                 APIUrl: 'https://confident-yonath-6c5a52.netlify.app/.netlify/identity',
                 audience: '',
-                setCookie: false,
+                setCookie: true,
             }))
         }
         initializeAuth()
     }, [])
 
-    const login = (email, password, remember) => {
-        return auth.login(email, password, remember)
+    const login = (email, password) => {
+        return auth.login(email, password, true)
             .then((response) => {
                 console.log('Success logging in!', response)
                 setUser(auth.currentUser())
@@ -43,8 +43,8 @@ export const IdentityAuthContextProvider = (props) => {
         .catch((error) => console.log("It's an error: ", error))
     }
 
-    const confirm = (token, remember) => {
-        return auth.confirm(token, remember)
+    const confirm = (token) => {
+        return auth.confirm(token, true)
             .then((response) => {
             console.log('Trying to confirm user', response)
             })

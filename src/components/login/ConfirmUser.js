@@ -12,7 +12,7 @@ const ConfirmUser = () => {
     const startIndex = location.hash.indexOf('=')
     const token = location.hash.slice(startIndex + 1)
     try {
-      confirm(token, true)
+      confirm(token)
     } catch (err) {
       console.error(err)
     }
