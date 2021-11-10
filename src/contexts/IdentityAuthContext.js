@@ -1,55 +1,38 @@
 import React from 'react'
-import GoTrue from 'gotrue-js'
+import netlifyIdentity from 'netlify-identity-widget'
 
 const IdentityAuthContext = React.createContext({
-    user: {},
-    confirm: () => {},
-    login: () => { },
-    logout: () => { },
-    signup: () => { },
+    isAuthenticated: false,
+    user: null,
+    authenticate: () => {},
+    signout: () => { },
 })
 
 export const IdentityAuthContextProvider = (props) => {
-    const [user, setUser] = React.useState({})
-    const [auth, setAuth] = React.useState({})
+    const [user, setUser] = React.useState(null)
+    const [isAuthenticated, setIsAuthenticated] = React.useState(false)
 
     React.useEffect(() => {
         const initializeAuth = () => {
-            setAuth(new GoTrue({
-                APIUrl: 'https://confident-yonath-6c5a52.netlify.app/.netlify/identity',
-                audience: '',
-                setCookie: false,
-            }))
+            window.netlifyIdentity = netlifyIdentity
+            netlifyIdentity.init()
         }
         initializeAuth()
     }, [])
 
-    const login = (email, password, remember) => {
-        return auth.login(email, password, remember)
-            .then((response) => {
-                console.log('Success logging in!', response)
-                setUser(auth.currentUser())
-            })
-        .catch((error) => console.log('Error: ', error))
+    const authenticate = () => {
+        setIsAuthenticated(true)
+        netlifyIdentity.open()
+        netlifyIdentity.on('login', user => {
+            setUser(user)
+        })
     }
 
-    const logout = () => {
-        return user.logout()
-    }
-
-    const signup = (email, password) => {
-        return auth.signup(email, password)
-            .then((response) => console.log('Confirmation email sent', response))
-        .catch((error) => console.log("It's an error: ", error))
-    }
-
-    const confirm = (token, remember) => {
-        return auth.confirm(token, remember)
-            .then((response) => {
-            console.log('Trying to confirm user', response)
-            })
-            .catch((error) => {
-            console.log('Got an error: ', error)
+    const signout = () => {
+        setIsAuthenticated(false)
+        netlifyIdentity.logout()
+        netlifyIdentity.on('logout', () => {
+            setUser(user)
         })
     }
 
@@ -57,10 +40,9 @@ export const IdentityAuthContextProvider = (props) => {
 return (
     <IdentityAuthContext.Provider value={{
         user,
-        confirm,
-        login,
-        logout,
-        signup,
+        isAuthenticated,
+        authenticate,
+        signout,
     }}>{props.children}</IdentityAuthContext.Provider>
 )
 }
