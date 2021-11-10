@@ -21,7 +21,7 @@ const LoginForm = (props) => {
   const history = useHistory()
   //const location = useLocation()
   //const { confirm } = useIdentityAuthContext()
-  const { login } = useIdentityAuthContext()
+  const { login, update } = useIdentityAuthContext()
   const handleClose = () => history.push('/welcome')
   return (
     <Box sx={style}>
@@ -45,6 +45,11 @@ const LoginForm = (props) => {
             setStatus({ success: true })
             setSubmitting(false)
             login(value.email, value.password)
+            update({
+              user_metadata: {
+                full_name: value.userName
+              }
+            })
             handleClose()
           } catch (err) {
             console.error(err)

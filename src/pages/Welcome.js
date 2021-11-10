@@ -9,7 +9,7 @@ const Welcome = () => {
       <h2>Please signup to access this site.</h2>
     </>
   ) : (
-    <h1>Welcome {user?.email}!</h1>
+    <h1>Welcome {user?.user_metadata?.full_name}!</h1>
   )
 }
 

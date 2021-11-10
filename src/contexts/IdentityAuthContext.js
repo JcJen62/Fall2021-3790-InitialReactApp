@@ -7,6 +7,7 @@ const IdentityAuthContext = React.createContext({
     login: () => {},
     logout: () => {},
     signup: () => {},
+    update: () => {}
 })
 
 export const IdentityAuthContextProvider = (props) => {
@@ -53,6 +54,15 @@ export const IdentityAuthContextProvider = (props) => {
         })
     }
 
+    const update = (userObject) => {
+        return user.update(userObject)
+            .then(user => console.log("Updated user %s", user))
+            .catch(error => {
+                console.log("Failed to update user: %o", error)
+                throw error
+        })
+    }
+
 
 return (
     <IdentityAuthContext.Provider value={{
@@ -61,6 +71,7 @@ return (
         login,
         logout,
         signup,
+        update,
     }}>{props.children}</IdentityAuthContext.Provider>
 )
 }
