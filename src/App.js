@@ -39,7 +39,7 @@ const App = () => {
             }
           >
             <Switch>
-              <Route path='/'>
+              <Route path='/' exact>
                 <Welcome />
               </Route>
               <Route path='/senators'>
