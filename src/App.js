@@ -39,10 +39,7 @@ const App = () => {
             }
           >
             <Switch>
-{/*               <Route path='/' exact>
-                <Redirect to='/welcome' />
-              </Route> */}
-              <Route path='/welcome'>
+              <Route path='/'>
                 <Welcome />
               </Route>
               <Route path='/senators'>
