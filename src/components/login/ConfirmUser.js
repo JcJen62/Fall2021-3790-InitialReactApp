@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { useIdentityAuthContext } from '../../contexts/IdentityAuthContext'
 import { useLocation, useHistory } from 'react-router-dom'
-import { Box, Button, TextField } from '@mui/material'
-import { Formik } from 'formik'
-import * as Yup from 'yup'
+import { Box, Button } from '@mui/material'
 
 const style = {
   position: 'absolute',
@@ -22,79 +20,33 @@ const ConfirmUser = () => {
   const { confirm } = useIdentityAuthContext()
   const location = useLocation()
   const history = useHistory()
-  const handleClose = () => history.push('/welcome')
-  console.log(location.hash.includes('confirmation_token'))
+
+  //console.log(location.hash.includes('#confirmation_token'))
 
   React.useEffect(() => {
-    const startIndex = location.hash.indexOf('=')
-    setToken(location.hash.slice(startIndex + 1))
-    try {
-      confirm(token)
-    } catch (err) {
-      console.log(err)
-    }
-  }, [confirm, token, location.hash])
+    setToken(location.hash.replace('#confirmation_token=', ''))
+  }, [token, location.hash])
 
-  return (
+  const handleSubmit = () => {
+      confirm(token)
+      history.push('/login')
+  }
+
+  return token ? (
     <Box sx={style}>
-      <Formik
-        initialValues={{
-          token: '',
-        }}
-        validationSchema={Yup.object().shape({
-          token: Yup.string().max(255).required('Token is required'),
-        })}
-        onSubmit={(value, { setErrors, setStatus, setSubmitting }) => {
-          try {
-            setStatus({ success: true })
-            setSubmitting(false)
-            confirm(token)
-            handleClose()
-          } catch (err) {
-            console.error(err)
-            setStatus({ success: false })
-            setErrors({ submit: err.message })
-            setSubmitting(false)
-          }
-        }}
+      <Button
+        color='primary'
+        fullWidth
+        size='large'
+        variant='contained'
+        type='submit'
+        onClick={handleSubmit}
       >
-        {({
-          errors,
-          values,
-          handleSubmit,
-          handleBlur,
-          handleChange,
-          isSubmitting,
-          touched,
-        }) => (
-          <form noValidate onSubmit={handleSubmit}>
-            <TextField
-              error={Boolean(touched.token && errors.token)}
-              fullWidth
-              helperText={touched.token && errors.token}
-              label='Confirmation Token'
-              margin='normal'
-              name='token'
-              onBlur={handleBlur}
-              onChange={handleChange}
-              type='text'
-              variant='outlined'
-              value={values.token}
-            />
-            <Button
-              color='primary'
-              disabled={isSubmitting}
-              fullWidth
-              size='large'
-              variant='contained'
-              type='submit'
-            >
-              Confirm Token
-            </Button>
-          </form>
-        )}
-      </Formik>
+        Confirm Signup
+      </Button>
     </Box>
+  ) : (
+      <h1>Look in your email for a link with your Confirmation Token</h1>
   )
 }
 

@@ -1,14 +1,15 @@
 import { useIdentityAuthContext } from '../contexts/IdentityAuthContext'
-import { useLocation } from 'react-router-dom'
 
 const Welcome = () => {
   const { user } = useIdentityAuthContext()
-  const location = useLocation()
-  console.log(location)
 
-  return (
-    !user ? <h1>Please check your email to confirm your account.</h1> :
-      <h1>Welcome {user?.email}!</h1>
+  return !user ? (
+    <>
+      <h1>Welcome! </h1>
+      <h2>Please signup to access this site.</h2>
+    </>
+  ) : (
+    <h1>Welcome {user?.email}!</h1>
   )
 }
 
