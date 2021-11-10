@@ -19,7 +19,7 @@ const style = {
 const SignupForm = (props) => {
   const history = useHistory()
   const identity = useIdentityContext()
-  const handleClose = () => history.push('/welcome')
+  const handleClose = () => history.push('/')
   return (
     <Box sx={style}>
       <Formik
