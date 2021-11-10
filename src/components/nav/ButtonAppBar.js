@@ -18,10 +18,12 @@ import {
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
 import GroupIcon from '@mui/icons-material/Group'
 import HomeIcon from '@mui/icons-material/Home'
+import { useIdentityAuthContext } from '../../contexts/IdentityAuthContext'
 
 const ButtonAppBar = () => {
   const memberData = useCongressContext()
   const history = useHistory()
+  const { signout } = useIdentityAuthContext()
   const [isOpen, setIsOpen] = React.useState(false)
 
   const toggleDrawer = () => {
@@ -79,8 +81,7 @@ const ButtonAppBar = () => {
               Senators: {memberData.senators.length} Reps:{' '}
               {memberData.reps.length}
             </Typography>
-            <Button color="inherit">
-              <NavLink to="/signup">Sign Up</NavLink>
+            <Button color="inherit" onClick={() => signout(() => history.push('/'))}>Sign Out
             </Button>
             <Button color="inherit">
               <NavLink to="/login">Login</NavLink>

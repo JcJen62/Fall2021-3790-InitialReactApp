@@ -28,11 +28,12 @@ export const IdentityAuthContextProvider = (props) => {
         })
     }
 
-    const signout = () => {
+    const signout = (callback) => {
         setIsAuthenticated(false)
         netlifyIdentity.logout()
         netlifyIdentity.on('logout', () => {
             setUser(user)
+            callback()
         })
     }
 
