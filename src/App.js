@@ -40,6 +40,9 @@ const App = () => {
             <Route path="/" exact>
               <Welcome />
             </Route>
+            <Route path="/welcome" exact>
+              <Welcome />
+            </Route>
             <Route path="/senators">
               <SenatorContainer />
             </Route>

@@ -14,11 +14,15 @@ import {
   Drawer,
   ListItemIcon,
   ListItemText,
+  Tooltip,
+  Avatar,
 } from '@mui/material'
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
 import GroupIcon from '@mui/icons-material/Group'
 import HomeIcon from '@mui/icons-material/Home'
 import { useIdentityContext } from 'react-netlify-identity-gotrue'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import LoginIcon from '@mui/icons-material/Login'
 
 const ButtonAppBar = () => {
   const memberData = useCongressContext()
@@ -32,7 +36,7 @@ const ButtonAppBar = () => {
 
   const handleNavChoice = (choice, shouldToggle) => {
     history.push(`/${choice}`)
-    if(shouldToggle) toggleDrawer()
+    if (shouldToggle) toggleDrawer()
   }
 
   const drawerItemList = () => (
@@ -82,20 +86,35 @@ const ButtonAppBar = () => {
               {memberData.reps.length}
             </Typography>
 
-            {!identity.user && !identity.provisionalUser && (<Button color="inherit">
-              <NavLink to="/signup">Sign Up</NavLink>
-            </Button>)}
-            
-            {identity.provisionalUser && (<Button color="inherit">
-              <NavLink to="/login">Login</NavLink>
-            </Button>)}
+            {!identity.user && !identity.provisionalUser && (
+              <Tooltip title="Signup">
+                <IconButton
+                  color="inherit"
+                  onClick={() => handleNavChoice('signup', false)}
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+
+            {!identity.user && (
+              <Tooltip title="Login">
+                <IconButton
+                  color="inherit"
+                  onClick={() => handleNavChoice('login', false)}
+                >
+                  <LoginIcon />
+                </IconButton>
+              </Tooltip>
+            )}
 
             {identity.user && (
-              <Button color='inherit' onClick={identity.logout}>
-                Logout
-                </Button>
+              <Tooltip title="Logout">
+              <IconButton color="inherit" onClick={identity.logout}>
+                <Avatar sx={{ width: 24, height: 24 }}>{identity.user?.user_metadata?.full_name.slice(0, 1)}</Avatar>
+              </IconButton>
+              </Tooltip>
             )}
-            
           </Toolbar>
         </AppBar>
       </Box>
