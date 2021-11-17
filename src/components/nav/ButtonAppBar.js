@@ -3,21 +3,23 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
+import LoginIcon from '@mui/icons-material/Login'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useCongressContext } from '../../contexts/CongressContext'
-import { NavLink, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import {
   ListItem,
   List,
   Drawer,
   ListItemIcon,
   ListItemText,
+  Avatar,
 } from '@mui/material'
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
 import GroupIcon from '@mui/icons-material/Group'
 import HomeIcon from '@mui/icons-material/Home'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { useIdentityContext } from 'react-netlify-identity-gotrue'
 
 const ButtonAppBar = () => {
@@ -82,18 +84,16 @@ const ButtonAppBar = () => {
               {memberData.reps.length}
             </Typography>
 
-            {!identity.user && !identity.provisionalUser && (<Button color="inherit">
-              <NavLink to="/signup">Sign Up</NavLink>
-            </Button>)}
+            {!identity.user && !identity.provisionalUser && (<IconButton color="inherit" onClick={() => handleNavChoice('signup', false)}><AccountCircleIcon/></IconButton>)}
             
-            {identity.provisionalUser && (<Button color="inherit">
-              <NavLink to="/login">Login</NavLink>
-            </Button>)}
+            {!identity.user && (<IconButton color="inherit" onClick={() => handleNavChoice('login', false)}>
+              <LoginIcon></LoginIcon>
+              </IconButton>)}
 
             {identity.user && (
-              <Button color='inherit' onClick={identity.logout}>
-                Logout
-                </Button>
+              <IconButton color='inherit' onClick={identity.logout}>
+              <Avatar>{identity.user.user_metadata?.full_name.slice(0,1)}</Avatar>
+                </IconButton>
             )}
             
           </Toolbar>
