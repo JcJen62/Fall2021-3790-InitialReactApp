@@ -1,5 +1,6 @@
 import { useIdentityContext } from 'react-netlify-identity-gotrue'
 import { Box, Typography, Fade } from '@mui/material'
+import { keyframes } from '@emotion/react'
 
 const Welcome = () => {
   const identity = useIdentityContext()
@@ -14,7 +15,20 @@ const Welcome = () => {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    transformStyle: 'preserve3d'
   }
+
+  const bounce = keyframes`
+  0% {
+    transform: translate3d(0,0,0);
+  }
+  50% {
+    transform: translate3d(30px, 30px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  `
 
   return (
     <>
@@ -40,6 +54,13 @@ const Welcome = () => {
               <Typography sx={{ mt: 2 }}>
                 It should also disappear when choosing a different route.
               </Typography>
+              <Box
+                sx={{ width: '50px', 
+                height: '50px', 
+                border: '2px solid red',
+                animation: `${bounce} 2s ease-in-out infinite`,
+              }}
+              ></Box>
             </Box>
           </Fade>
         </>
