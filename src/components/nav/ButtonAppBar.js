@@ -15,6 +15,7 @@ import {
   ListItemIcon,
   ListItemText,
   Avatar,
+  Tooltip,
 } from '@mui/material'
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople'
 import GroupIcon from '@mui/icons-material/Group'
@@ -34,7 +35,7 @@ const ButtonAppBar = () => {
 
   const handleNavChoice = (choice, shouldToggle) => {
     history.push(`/${choice}`)
-    if(shouldToggle) toggleDrawer()
+    if (shouldToggle) toggleDrawer()
   }
 
   const drawerItemList = () => (
@@ -84,18 +85,37 @@ const ButtonAppBar = () => {
               {memberData.reps.length}
             </Typography>
 
-            {!identity.user && !identity.provisionalUser && (<IconButton color="inherit" onClick={() => handleNavChoice('signup', false)}><AccountCircleIcon/></IconButton>)}
-            
-            {!identity.user && (<IconButton color="inherit" onClick={() => handleNavChoice('login', false)}>
-              <LoginIcon></LoginIcon>
-              </IconButton>)}
+            {!identity.user && !identity.provisionalUser && (
+              <Tooltip title="Signup">
+                <IconButton
+                  color="inherit"
+                  onClick={() => handleNavChoice('signup', false)}
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+
+            {!identity.user && (
+              <Tooltip title="Login">
+              <IconButton
+                color="inherit"
+                onClick={() => handleNavChoice('login', false)}
+              >
+                <LoginIcon></LoginIcon>
+              </IconButton>
+              </Tooltip>
+            )}
 
             {identity.user && (
-              <IconButton color='inherit' onClick={identity.logout}>
-              <Avatar>{identity.user.user_metadata?.full_name.slice(0,1)}</Avatar>
-                </IconButton>
+              <Tooltip title="Logout">
+              <IconButton color="inherit" onClick={identity.logout}>
+                <Avatar>
+                  {identity.user.user_metadata?.full_name.slice(0, 1)}
+                </Avatar>
+              </IconButton>
+              </Tooltip>
             )}
-            
           </Toolbar>
         </AppBar>
       </Box>
