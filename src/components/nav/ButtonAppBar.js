@@ -81,10 +81,12 @@ const ButtonAppBar = () => {
             >
               <HomeIcon />
             </IconButton>
+            <Typography variant="h6">Favorites: {memberData.favorites.length}</Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Senators: {memberData.senators.length} Reps:{' '}
               {memberData.reps.length}
             </Typography>
+            
 
             {!identity.user && !identity.provisionalUser && (
               <Tooltip title="Signup">

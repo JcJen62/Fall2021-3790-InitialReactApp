@@ -34,9 +34,10 @@ const SenatorContainer = () => {
     } else {
       setFavorites(() => {
         // duplicate so filter and return new array
-        return favorites.filter((item) => item !== senator.id)
+        return memberData.favorites.filter((item) => item !== senator.id)
       })
     }
+    memberData.favorites = favorites
   }
 
   return (

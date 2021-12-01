@@ -23,7 +23,7 @@ const Welcome = () => {
     transform: translate3d(0,0,0);
   }
   50% {
-    transform: translate3d(30px, 30px, 0);
+    transform: translate3d(330px, 0, 0);
   }
   100% {
     transform: translate3d(0, 0, 0);
@@ -58,7 +58,7 @@ const Welcome = () => {
                 sx={{ width: '50px', 
                 height: '50px', 
                 border: '2px solid red',
-                animation: `${bounce} 2s ease-in-out infinite`,
+                animation: `${bounce} 2s linear infinite`,
               }}
               ></Box>
             </Box>
