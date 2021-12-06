@@ -11,27 +11,32 @@ import palpatinePic from './Emperor-Palpatine.jpeg'
 import LazyLoad from 'react-lazyload'
 
 import { useHistory } from 'react-router-dom'
+import { useCongressContext } from '../contexts/CongressContext'
 
 const SenatorCard = (props) => {
-  const [favorite, setFavorite] = React.useState(false)
   const history = useHistory()
   const partyColor = props.senator.party === 'D' ? '#0000ff' : '#e71d36'
   const { senator } = props
+  const [favorite, setFavorite] = React.useState(false)
+  const { favorites, updateFavorites} = useCongressContext()
 
   const handleInfoClick = () => {
-    //props.modalFunction()
     history.push(`/member/${senator.id}`)
   }
 
   const handleFavoriteClick = () => {
-    //console.log(props.senator.id)
-    setFavorite(!favorite)
-    props.addToFavoritesFunction(senator)
+    updateFavorites(senator)
   }
 
+  React.useEffect(() => {
+    favorites.includes(senator.id) ? setFavorite(true) : setFavorite(false)
+  }, [senator.id, favorites])
+  
+  
+
   const handleImageLoadError = (e) => {
-    e.target.onerror = null
-    e.target.src = palpatinePic
+      e.target.onerror = null
+      e.target.src = palpatinePic
   }
 
   return (
