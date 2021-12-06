@@ -9,6 +9,7 @@ import Welcome from './pages/Welcome'
 import MemberDetail from './pages/MemberDetail'
 import LoginForm from './components/login/LoginForm'
 import SignupForm from './components/login/SignupForm'
+import Favorites from './pages/Favorites'
 import NotFound from './pages/NotFound'
 import { Box, CircularProgress } from '@mui/material'
 import NetlifyIdentityContext from 'react-netlify-identity-gotrue'
@@ -58,6 +59,9 @@ const App = () => {
             <Route path="/signup">
               <SignupForm />
             </Route>
+            <Route path="/favorites">
+              <Favorites/>
+              </Route>
             <Route path="*">
               <NotFound />
             </Route>
