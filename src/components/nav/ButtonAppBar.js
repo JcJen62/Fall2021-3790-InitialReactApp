@@ -25,7 +25,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LoginIcon from '@mui/icons-material/Login'
 
 const ButtonAppBar = () => {
-  const memberData = useCongressContext()
+  const {senators, reps, favorites } = useCongressContext()
   const history = useHistory()
   const identity = useIdentityContext()
   const [isOpen, setIsOpen] = React.useState(false)
@@ -38,6 +38,8 @@ const ButtonAppBar = () => {
     history.push(`/${choice}`)
     if (shouldToggle) toggleDrawer()
   }
+
+  
 
   const drawerItemList = () => (
     <Box sx={{ width: 250 }} role="presentation">
@@ -81,9 +83,12 @@ const ButtonAppBar = () => {
             >
               <HomeIcon />
             </IconButton>
+
+            <Typography variant="h6">Favorites: {favorites?.length}</Typography>
+
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Senators: {memberData.senators.length} Reps:{' '}
-              {memberData.reps.length}
+              Senators: {senators.length} Reps:{' '}
+              {reps.length}
             </Typography>
 
             {!identity.user && !identity.provisionalUser && (
