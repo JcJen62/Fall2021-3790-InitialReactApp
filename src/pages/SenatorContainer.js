@@ -23,22 +23,8 @@ const SenatorContainer = () => {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-  const [favorites, setFavorites] = React.useState([])
-  const memberData = useCongressContext()
-
-  const addToFavorites = (senator) => {
-    console.log(`${senator} was clicked to add to favorites`)
-    if (!favorites.includes(senator.id)) {
-      // not currently a favorite, so add it
-      setFavorites((prevState) => [...prevState, senator.id])
-    } else {
-      setFavorites(() => {
-        // duplicate so filter and return new array
-        return memberData.favorites.filter((item) => item !== senator.id)
-      })
-    }
-    memberData.favorites = favorites
-  }
+  //const [favorites, setFavorites] = React.useState([])
+  const { senators } = useCongressContext()
 
   return (
     <Box
@@ -47,11 +33,10 @@ const SenatorContainer = () => {
         flexWrap: 'wrap',
       }}
     >
-      {memberData.senators.map((senator) => {
+      {senators.map((senator) => {
         return (
           <SenatorCard
             key={senator.id}
-            addToFavoritesFunction={addToFavorites}
             modalFunction={handleOpen}
             senator={{ ...senator }}
           />

@@ -12,7 +12,20 @@ export const CongressContextProvider = (props) => {
   const [senators, setSenators] = React.useState([])
   const [reps, setReps] = React.useState([])
   const [allMembers, setAllMembers] = React.useState([])
-  const [favorites] = React.useState([])
+  const [favorites, setFavorites] = React.useState([])
+
+  const updateFavorites = (member) => {
+    console.log(`${member} was clicked to add to favorites`)
+    if (!favorites.includes(member.id)) {
+      // not currently a favorite, so add it
+      setFavorites((prevState) => [...prevState, member.id])
+    } else {
+      setFavorites(() => {
+        // duplicate so filter and return new array
+        return favorites.filter((item) => item !== member.id)
+      })
+    }
+  }
 
   React.useEffect(() => {
     // first define the async function
@@ -42,6 +55,7 @@ export const CongressContextProvider = (props) => {
       reps,
       allMembers,
       favorites,
+      updateFavorites,
     }}>
       {props.children}
     </CongressContext.Provider>
