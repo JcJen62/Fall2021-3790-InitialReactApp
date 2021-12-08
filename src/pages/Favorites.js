@@ -8,17 +8,11 @@ const Favorites = () => {
   const { allMembers, favorites } = useCongressContext()
 
   React.useEffect(() => {
-    //console.log(favorites)
     setMatchedFavorites((prevState) => {
-      console.log(prevState)
       const matches = allMembers.filter((member) => favorites.includes(member.id))
-      console.log(matches)
-      return [...prevState, matches]
+      return [...prevState, ...matches]
     })
   }, [favorites, allMembers])
-  
-
-  console.log(matchedFavorites)
 
   return (
     <Box

@@ -81,7 +81,7 @@ const ButtonAppBar = () => {
             >
               <HomeIcon />
             </IconButton>
-            <Typography variant="h6">Favorites: {favorites?.length}</Typography>
+            <IconButton size="large" aria-label="favorites" color="inherit" onClick={() => handleNavChoice('favorites', false)}>Favorites {favorites?.length}</IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Senators: {senators.length} Reps:{' '}
               {reps.length}
