@@ -1,4 +1,4 @@
-import AnimeCard from "./AnimeCard";
+import AnimeCard from "../components/AnimeCard";
 import { Grid, Typography } from "@mui/material";
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'

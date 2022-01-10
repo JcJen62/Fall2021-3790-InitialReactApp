@@ -1,4 +1,4 @@
-import MangaCard from "./MangaCard";
+import MangaCard from "../components/MangaCard";
 import { Grid, Typography } from "@mui/material";
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
