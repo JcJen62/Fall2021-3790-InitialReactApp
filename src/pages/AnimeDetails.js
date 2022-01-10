@@ -1,7 +1,7 @@
 import { Typography, Box, Fade } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from 'react'
-import { useAnimeContext } from "../../context/AnimeContext";
+import { useAnimeContext } from "../contexts/AnimeContext";
 import { useIdentityContext } from 'react-netlify-identity-gotrue'
 import { Redirect } from "react-router-dom";
 
@@ -12,10 +12,8 @@ const styles = {
 
 
 const AnimeDetails = (props) => {
-  const isDev = useAnimeContext();
   const [AnimeDetails, setAnimeDetails] = useState();
   const context = useAnimeContext()
-  const identity = useIdentityContext();
   useEffect(() => {
     async function getAnimeDetails(id) {
       const { data } = await axios.get(`https://api.jikan.moe/v3/anime/${id}`)
@@ -24,14 +22,6 @@ const AnimeDetails = (props) => {
     }
     getAnimeDetails(context.id)
   }, [setAnimeDetails, AnimeDetails, context.id])
-
-  if (!identity.user && !isDev.isDev) {
-    return <Redirect to={'/Login'} />;
-  }
-
-  if (!identity.provisionalUser && !isDev.isDev) {
-    return <Redirect to={'/Dashboard'} />;
-  }
 
   if (!AnimeDetails) {
     return <div>Loading...</div>
