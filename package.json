@@ -26,7 +26,6 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "localDev": "npx netlify dev",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
