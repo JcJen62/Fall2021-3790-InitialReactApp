@@ -44,17 +44,17 @@ const ButtonAppBar = () => {
   const drawerItemList = () => (
     <Box sx={{ width: 250 }} role="presentation">
       <List>
-        <ListItem button onClick={() => handleNavChoice('senators', true)}>
+        <ListItem button onClick={() => handleNavChoice('TopAnime', true)}>
           <ListItemIcon>
             <EmojiPeopleIcon />
           </ListItemIcon>
-          <ListItemText primary="Senators" />
+          <ListItemText primary="Top Anime" />
         </ListItem>
-        <ListItem button onClick={() => handleNavChoice('reps', true)}>
+        <ListItem button onClick={() => handleNavChoice('TopManga', true)}>
           <ListItemIcon>
             <GroupIcon />
           </ListItemIcon>
-          <ListItemText primary="Representatives" />
+          <ListItemText primary="Top Manga" />
         </ListItem>
       </List>
     </Box>
@@ -85,11 +85,6 @@ const ButtonAppBar = () => {
             </IconButton>
 
             <Typography variant="h6">Favorites: {favorites?.length}</Typography>
-
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Senators: {senators.length} Reps:{' '}
-              {reps.length}
-            </Typography>
 
             {!identity.user && !identity.provisionalUser && (
               <Tooltip title="Signup">

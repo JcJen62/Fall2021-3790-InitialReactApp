@@ -8,23 +8,35 @@ const useStyles = makeStyles(() => createStyles({
       margin: 0,
       padding: 0,
     },
-    html: {
-      '-webkit-font-smoothing': 'antialiased',
-      '-moz-osx-font-smoothing': 'grayscale',
-      height: '100%',
-      width: '100%'
-    },
-    body: {
-      backgroundColor: '#f4f6f8',
-      height: '100%',
-      width: '100%'
+    '.App': {
+        'background-color': '#6a7a81'
     },
     a: {
       textDecoration: 'none'
     },
-    '#root': {
-      height: '100%',
-      width: '100%'
+    img: {
+        height: '320px',
+        width: '225px',
+        '&:hover': {
+          '-moz-box-shadow': '0 0 10px black',
+          '-webkit-box-shadow': '0 0 10px black',
+          'box-shadow': '0 0 10px black'
+        },
+    },
+    itemFlex: {
+      display: 'flex',
+      flexDirection: 'row'
+    },
+    infoFlex: {
+      display: 'flex',
+      flexDirection: 'column'
+    },
+    buttonStuff: {
+      marginBotton: 3
+    },
+    details: {
+      display: 'flex',
+      flexDirection: 'row'
     }
   }
 }));

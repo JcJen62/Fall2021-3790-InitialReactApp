@@ -24,15 +24,14 @@ export const AnimeContextProvider = (props) => {
   }
   const [favorites, setFavorites] = React.useState([])
 
-  const updateFavorites = (member) => {
-    console.log(`${member} was clicked to add to favorites`)
-    if (!favorites.includes(member.id)) {
+  const updateFavorites = (anime) => {
+    if (!favorites.includes(anime.mal_id)) {
       // not currently a favorite, so add it
-      setFavorites((prevState) => [...prevState, member.id])
+      setFavorites((prevState) => [...prevState, anime.mal_id])
     } else {
       setFavorites(() => {
         // duplicate so filter and return new array
-        return favorites.filter((item) => item !== member.id)
+        return favorites.filter((item) => item !== anime.mal_id)
       })
     }
   }

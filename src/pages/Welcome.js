@@ -34,7 +34,7 @@ const Welcome = () => {
     <>
       {!identity.provisionalUser && !identity.user && (
         <h1>
-          Welcome to my Congress page! Not much to see here unless you signup
+          Welcome to my Anime page! Not much to see here unless you signup
           and login :-)
         </h1>
       )}
@@ -49,18 +49,8 @@ const Welcome = () => {
           <Fade in timeout={3000} easing={`ease-in-out`}>
             <Box sx={style}>
               <Typography variant="h5">
-                This box shall fade in whenever this component/route is shown.
+                View the top 50 anime and Manga on this site according to myanimelist.net!
               </Typography>
-              <Typography sx={{ mt: 2 }}>
-                It should also disappear when choosing a different route.
-              </Typography>
-              <Box
-                sx={{ width: '50px', 
-                height: '50px', 
-                border: '2px solid red',
-                animation: `${bounce} 2s ease-in-out infinite`,
-              }}
-              ></Box>
             </Box>
           </Fade>
         </>

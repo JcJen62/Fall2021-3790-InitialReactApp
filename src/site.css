@@ -1,0 +1,41 @@
+.details {
+    display: flex;
+    flex-direction: row;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.detailsImg {
+    margin-left: 2rem;
+}
+
+#login {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.inputLogin{
+    max-width: 15rem;
+}
+
+body {
+    background-color: #6a7a81;
+}
+
+h4 {
+    animation-duration: 3s;
+    animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
