@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Typography } from "@mui/material"
 import { Grid } from "@mui/material"
 import { Button } from '@mui/material';
-import { useAnimeContext } from "../../context/AnimeContext";
+import { useAnimeContext } from "../contexts/AnimeContext";
 
 const AnimeCard = (props) => {
     const [added, setAdded] = useState(false)
