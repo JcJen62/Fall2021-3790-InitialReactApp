@@ -1,15 +1,10 @@
 import MangaCard from "./MangaCard";
-import { useIdentityContext } from 'react-netlify-identity-gotrue'
 import { Grid, Typography } from "@mui/material";
-import { Redirect } from "react-router-dom";
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useAnimeContext } from "../../context/AnimeContext";
 
 
 const MangaContainer = () => {
-  const isDev = useAnimeContext();
-  const identity = useIdentityContext();
   const [setOpen] = useState(false)
   const handleOpen = () => {
     setOpen(true)

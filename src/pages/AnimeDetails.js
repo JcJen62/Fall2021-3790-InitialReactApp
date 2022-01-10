@@ -2,8 +2,6 @@ import { Typography, Box, Fade } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from 'react'
 import { useAnimeContext } from "../contexts/AnimeContext";
-import { useIdentityContext } from 'react-netlify-identity-gotrue'
-import { Redirect } from "react-router-dom";
 
 const styles = {
   textAlign: 'center',
