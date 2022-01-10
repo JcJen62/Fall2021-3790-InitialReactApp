@@ -2,7 +2,7 @@ import './App.css'
 import React, { Suspense } from 'react'
 //import SenatorContainer from './pages/SenatorContainer'
 //import RepsContainer from './pages/RepsContainer'
-import { CongressContextProvider } from './contexts/CongressContext'
+import { AnimeContextProvider } from './contexts/AnimeContext'
 import ButtonAppBar from './components/nav/ButtonAppBar'
 import { Route, Switch } from 'react-router-dom'
 import Welcome from './pages/Welcome'
@@ -27,7 +27,7 @@ const App = () => {
   return (
     <div className="App">
       <NetlifyIdentityContext url='https://confident-yonath-6c5a52.netlify.app'>
-      <CongressContextProvider>
+      <AnimeContextProvider>
         <ButtonAppBar />
         <Suspense
           fallback={
@@ -63,7 +63,7 @@ const App = () => {
             </Route>
           </Switch>
         </Suspense>
-      </CongressContextProvider>
+      </AnimeContextProvider>
       </NetlifyIdentityContext>
     </div>
   )
