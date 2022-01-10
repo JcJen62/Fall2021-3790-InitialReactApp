@@ -18,18 +18,6 @@ const Welcome = () => {
     transformStyle: 'preserve3d'
   }
 
-  const bounce = keyframes`
-  0% {
-    transform: translate3d(0,0,0);
-  }
-  50% {
-    transform: translate3d(30px, 30px, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  `
-
   return (
     <>
       {!identity.provisionalUser && !identity.user && (

@@ -11,7 +11,7 @@ const MangaCard = (props) => {
     const [added, setAdded] = useState(false)
     const {manga} = props
     const context = useAnimeContext()
-    const [favorite, setFavorite] = React.useState(false)
+    const [setFavorite] = React.useState(false)
     const handleFave = (bool) => {
         setAdded(bool)
         updateFavorites(manga)

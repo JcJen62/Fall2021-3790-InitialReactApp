@@ -25,7 +25,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LoginIcon from '@mui/icons-material/Login'
 
 const ButtonAppBar = () => {
-  const {senators, reps, favorites } = useCongressContext()
+  const { favorites } = useCongressContext()
   const history = useHistory()
   const identity = useIdentityContext()
   const [isOpen, setIsOpen] = React.useState(false)
