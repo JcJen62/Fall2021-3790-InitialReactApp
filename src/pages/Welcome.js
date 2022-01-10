@@ -1,6 +1,5 @@
 import { useIdentityContext } from 'react-netlify-identity-gotrue'
 import { Box, Typography, Fade } from '@mui/material'
-import { keyframes } from '@emotion/react'
 
 const Welcome = () => {
   const identity = useIdentityContext()

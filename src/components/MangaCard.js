@@ -20,7 +20,7 @@ const MangaCard = (props) => {
 
     React.useEffect(() => {
         favorites.includes(manga.mal_id) ? setFavorite(true) : setFavorite(false)
-    }, [manga.mal_id, favorites])
+    }, [manga.mal_id, favorites, setFavorite])
 
     return (<Grid className="itemFlex" item xs={4} key={manga.mal_id}>
         <img src={manga.image_url} alt="Manga Poster" />

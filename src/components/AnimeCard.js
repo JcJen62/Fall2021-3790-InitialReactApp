@@ -11,7 +11,7 @@ const AnimeCard = (props) => {
     const [added, setAdded] = useState(false)
     const { anime } = props
     const context = useAnimeContext()
-    const [setFavorite] = React.useState(false)
+    const [setFavorite] = useState(false)
     const handleFave = (bool) => {
         setAdded(bool)
         updateFavorites(anime)
@@ -20,7 +20,7 @@ const AnimeCard = (props) => {
 
     React.useEffect(() => {
         favorites.includes(anime.mal_id) ? setFavorite(true) : setFavorite(false)
-    }, [anime.mal_id, favorites])
+    }, [anime.mal_id, favorites, setFavorite])
 
     return (<Grid className="itemFlex" item xs={4} key={anime.mal_id}>
         <img src={anime.image_url} alt="Anime Poster" />
